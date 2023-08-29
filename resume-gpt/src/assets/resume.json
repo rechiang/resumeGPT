@@ -1,0 +1,103 @@
+{
+	"personalDetails": {
+        "name": "Rex CHIANG",
+        "legal_name": "SHIUH-HORNG CHIANG",
+        "address": "San Francisco, CA, USA, 94115",
+        "phone": "+1 (669) 278-6963",
+        "email": "rex.chiang@icloud.com"
+    },
+    "positions": [
+        {
+            "title": "Senior Software Quality Engineer",
+            "company": "Nokia of America",
+            "location": "Sunnyvale, CA, USA",
+            "date": "May 2018 – Present",
+            "responsibilities": [
+                "Designed, implemented, and efficiently scaled out large distributed test systems and networks, encompassing all OSI layers",
+                "Identified over 200 software defects with large-scale cloud orchestration software",
+                "Developed test suites in python and adding to existing pytest CI/CD automation pipeline",
+                "Spearheaded testing efforts for the development of a feature that leverages software to offload packet processing (DPDK) from the Linux kernel",
+                "Collaborated with external smartNIC hardware vendors to design and execute automated tests, ensuring rigorous qualification of the product",
+                "Lead the performance testing for data processing nodes, utilizing an array of software instrumentation and telemetry tools such as IXIA, iperf3, pcap, Apache Benchmark, and Locust",
+                "Proficiently conducted log analysis and collaborating closely with development team to test and implement software fixes",
+                "Experienced in utilizing GitHub for version control to manage and maintain a substantial test code base",
+                "Implemented comprehensive and efficient test coverage for Nokia's Software-Defined Network (SDN) product, ensuring customer satisfaction for multiple tier-1 clients",
+                "Deployed Red Hat OpenStack Platform to test software interoperability for large-scale cloud deployments",
+                "Played a key role in test case reviews, product release planning, and validation alignment with customer end solutions, ensuring adherence to QA best practices",
+                "Effectively utilized the Jira ticketing system to track and manage bug reporting throughout the software development lifecycle, ensuring prompt identification, resolution, and documentation of issues",
+                "Significantly reduced customer-reported issues, ensuring timely software releases and meeting contractual customer acceptance criteria"
+            ]
+        },
+        {
+            "title": "Nuage Technical Expertise Engineer",
+            "company": "Nokia of Canada",
+            "location": "Ottawa, Canada",
+            "date": "Aug 2015 – May 2018",
+            "responsibilities": [
+                "Provided expert tier-3 technical support for Nuage software-defined networking, resolving complex issues and maintaining high customer satisfaction",
+                "Troubleshot cloud computing software issues relating to OpenStack, VMware EXSi, libvirt, and Docker, ensuring stable and reliable cloud environments",
+                "Supported Nuage SDN software, demonstrating proficiency in MySQL, ejabberd XMPP server, OpenFlow, Open vSwitch, RESTful API, and JBoss on various Linux platforms",
+                "Reproduced complicate customer software defects by distilling irrelevant data and only focusing on pertinent information that follow a logical correlation",
+                "Developed software scripts in Bash and Python, to automate software events to replicate intricate corner case issues",
+                "Conducted in-depth log analysis to provide root-cause analysis for software issues and offered feasible workaround solutions whenever possible",
+                "Ensured software development accountability, driving product supportability and adherence to development processes",
+                "Successfully resolved issues using issue tracking systems, maintaining accurate records of support cases",
+                "Provided rotational on-call outage support, ensuring continuous service availability"
+	    ]
+        },
+        {
+            "title": "Network Integration and Customer Engineer",
+            "company": "Alcatel-Lucent",
+            "location": "Ottawa, Canada",
+            "date": "Feb 2013 – Sep 2015",
+            "responsibilities": [
+                "Provided expert tier-3 technical support for 9900 WNG wireless network analytic tool, resolving issues related to radio access network components",
+                "Supported multivendor, multi-technology systems (2.5G, 3G, 4G, LTE), ensuring seamless integration and customer satisfaction",
+                "Planned and supported mirroring of wireless traffic to ensure control plane traffic was received for deep packet inspection",
+                "Troubleshot software issues including, MySQL, Infobright, and RHEL",
+                "Created custom Bash shell scripts to automate and conduct network audits",
+                "Designated as technical team lead and assumed the responsibility of conducting interviews and providing technical training",
+                "Provided rotational on-call outage support, ensuring continuous network service availability for customers",
+                "Delivered professional network turn-ups and integration for tier-1 service providers globally, ensuring smooth deployments and customer satisfaction",
+                "Executed critical maintenance window to successfully provide solutions and software upgrades",
+                "Created high and low-level design documents related to software and network integration",
+                "Provided on-site technical customer engagement and consultation for customer and account team"
+            ]
+        },
+        {
+            "title": "Customer Application Engineer",
+            "company": "Alcatel-Lucent",
+            "location": "Ottawa, Canada",
+            "date": "Jul 2011 – Feb 2013",
+            "responsibilities": [
+                "Provided expert tier-3 technical support for 5620 SAM network manager, ensuring high availability and efficient network management",
+                "Extensively troubleshot various network protocols and services relating to network management such as SNMP and Netconf",
+                "Worked extensively with RHEL platform, JMS server, JBoss, Oracle database, Oracle Data Guard Replication, and Apache web server",
+                "Supported various third-party XML/SOAP clients, ensuring smooth integration and data exchange",
+                "Reproduced complex fault recreation scenarios in the lab to help identify product defects for R&D to fix/patch",
+                "Provided rotational on-call outage support, ensuring continuous customer support and issue resolution",
+                "Successfully performed upgrades for mission-critical systems, ensuring minimal downtime and seamless transitions",
+                "Provided training and on-site support for deployed customer systems"
+            ]
+        }
+    ],
+    "technicalSkills": {
+        "Scripting language (Python, Bash, Ruby)": "Expert",
+        "Virtualization (OpenStack, Kubernetes, VMware EXSi, libvirt, Docker)": "Expert",
+        "CI/CD development and integration (pytest, Jenkins, ansible)": "Expert",
+        "Networking (SDN, BGP, OSPF, MPLS, VXLAN, IXIA)": "Expert",
+        "Distributed systems and networks (Full stack support experience)": "Expert",
+        "Linux (CentOS, RHEL, Ubuntu)": "Expert",
+        "Object oriented language (Java, C++)": "Proficient",
+        "Github version control": "Proficient",
+        "SQL (MySQL, Percona, Infobright)": "Proficient",
+        "Openstack (RHOSPd, nova, neutron, ironic, yaml, json)": "Proficient"
+    },
+    "education": [
+        {
+            "degree": "Bachelor of Information Technology",
+            "school": "Carleton University, Ottawa, ON, Canada",
+            "date": "Aug 2006 - Apr 2011"
+        }
+    ]
+}

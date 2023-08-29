@@ -9,7 +9,7 @@
     <!-- Hamburger Menu Links -->
     <div v-if="menuVisible" class="menu-items">
         <a href="#">How this was made</a>
-        <a href="https://github.com/rechiang/resumeGPT" target="_blank">Link to Rex repo</a>
+        <a href="https://github.com/rechiang/resumeGPT" target="_blank">Link to Rex's repo</a>
     </div>
     
     <h2>Rex's Job Search Assistant</h2>
@@ -75,7 +75,7 @@ export default {
     async askOpenAI() {
         const endpoint = "https://api.openai.com/v1/chat/completions";
         const headers = {
-            'Authorization': `Bearer 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`,
+            'Authorization': `Bearer <API Key>`,
             'Content-Type': 'application/json'
         };
 
