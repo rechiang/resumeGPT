@@ -46,8 +46,9 @@ export default {
     question: '',
     answer: '',
     loading: false,
-    menuVisible: false
-  };
+    menuVisible: false,
+    apiKey: process.env.VUE_APP_API_KEY
+    };
 },
   computed: {
     displayedResponse() {
@@ -75,7 +76,7 @@ export default {
     async askOpenAI() {
         const endpoint = "https://api.openai.com/v1/chat/completions";
         const headers = {
-            'Authorization': `Bearer <API Key>`,
+            'Authorization': `Bearer ${this.apiKey}`,
             'Content-Type': 'application/json'
         };
 
