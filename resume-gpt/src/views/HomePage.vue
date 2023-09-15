@@ -1,39 +1,93 @@
 <template>
-  <div class="query-box">
-    
-    <!-- Hamburger Menu Icon -->
-    <div class="hamburger-menu" @click="toggleMenu">
-        &#9776;
-    </div>
-
-    <!-- Hamburger Menu Links -->
-    <div v-if="menuVisible" class="menu-items">
-        <a href="#">How this was made</a>
-        <a href="https://github.com/rechiang/resumeGPT" target="_blank">Link to Rex's repo</a>
-    </div>
-    
-    <h2>Rex's Job Search Assistant</h2>
-
-    <div class="input-container">
-      <input 
-        v-model="question" 
-        placeholder="Ask something about Rex..." 
-        @keyup.enter="askOpenAI"
-      />
-      <button @click="askOpenAI" class="send-button">
+  <div class="main-container">
+  
+    <div class="query-box">
+      <h2>Rex Chiang</h2>
+      <h3>Software Test Engineer</h3>
+      
+      <div class="input-container">
+        <input 
+          v-model="question" 
+          placeholder="Ask something about Rex..." 
+          @keyup.enter="askOpenAI"
+        />
+        <button @click="askOpenAI" class="send-button">
           <img src="@/assets/send_button.png" alt="Send" />
+        </button>
+      </div>
+
+      <div class="response-container">
+        <div class="textarea-wrapper">
+          <textarea v-model="displayedResponse" class="response-input" readonly></textarea>
+          <div v-if="loading" class="loading-indicator"></div>
+        </div>
+      </div>
+
+      <div class="icon-container">
+        <a href="https://linkedin.com/in/rex-chiang-54326734" target="_blank">
+          <i class="fab fa-linkedin fa-2x"></i>
+        </a>
+        <a href="https://github.com/rechiang" target="_blank">
+          <i class="fab fa-github fa-2x"></i>
+        </a>
+        <a href="https://hub.docker.com/r/rechiang/" target="_blank">
+          <i class="fab fa-docker fa-2x"></i>
+        </a>
+        <a href="mailto:rex.chiang@icloud.com">
+          <i class="fas fa-envelope fa-2x"></i>
+        </a>
+      </div>
+
+      <button ref="scrollButton" class="scroll-arrow">
+        <img src="@/assets/down_button.png" alt="Scroll Down">
       </button>
     </div>
 
-    <div class="response-container">
-      <div class="textarea-wrapper">
-        <textarea v-model="displayedResponse" class="response-input" readonly></textarea>
-        <div v-if="loading" class="loading-indicator"></div>
+    <div id="nextSection" class="full-page">
+      <div class="about-section">
+        <h2>About</h2>
+        <div class="about-content">
+          <div class="about-photo">
+            <img src="@/assets/profile.jpeg" alt="Rex Chiang" />
+          </div>
+          <div class="about-text">
+            <p>Hello, I'm Rex Chiang! I'm a technology enthusiast and have over a decade of experience</p>
+            <p>in the tech industry. Currently based in San Francisco, I specialize in designing large-scale</p>
+            <p>test systems, CI/CD automation, and cloud computing platforms. I'm well versed in backend</p>
+            <p>technologies and I am proficient in various programing languages. I excel at identifying software</p>
+            <p> defects leading performance testing efforts, and maintaining high-quality software releases.</p>
+          </div>
+        </div>
       </div>
-    </div>
 
+      <div class="skills-contact-container"> 
+        <div class="skills-section">
+          <h2>SKILLS</h2>
+          <div class="skills-content">
+              <div class="skill" v-for="skill in skills" :key="skill.name">
+              <span>{{ skill.name }}</span>
+              <div class="skill-bar">
+                <div class="skill-level" :style="{ width: `${skill.level}%` }"></div>
+                <span class="skill-percentage" :style="{ left: `${skill.level}%` }">{{ skill.level }}%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-section">
+          <h2>CONTACT</h2>
+          <div class="contact-content">
+            <p>Email: <a href="rex.chiang@icloud.com">rex.chiang@icloud.com</a></p>
+            <p>Phone: +1-669-278-6963</p>
+          </div>
+        </div>
+      </div>
+
+      
+    </div>
   </div>
 </template>
+
 
 <script>
 import axios from 'axios';
@@ -46,8 +100,18 @@ export default {
     question: '',
     answer: '',
     loading: false,
-    menuVisible: false,
-    apiKey: process.env.VUE_APP_API_KEY
+    infoVisible: false,
+    apiKey: process.env.VUE_APP_API_KEY,
+    skills: [
+      { name: 'Virtualization', level: 95 },
+      { name: 'Python', level: 70 },
+      { name: 'Bash Scripting', level: 90 },
+      { name: 'Networking', level: 90 },
+      { name: 'Linux', level: 90 },
+      { name: 'pytest', level: 80 },
+      { name: 'Github', level: 75 },
+      { name: 'SQL', level: 65 },
+    ]
     };
 },
   computed: {
@@ -107,65 +171,113 @@ export default {
             this.loading = false;
         }
         },
-        toggleMenu() {
-          this.menuVisible = !this.menuVisible;
-          }
       },
-      mounted() {
-        this.adjustTextareaHeight();
+        mounted() {
+            this.adjustTextareaHeight();
+            this.$refs.scrollButton.addEventListener('click', () => {
+                const nextElement = document.getElementById("nextSection");
+                if (nextElement) {
+                    nextElement.scrollIntoView({ behavior: "smooth" });
+                }
+            });
+        }
+
       }
-    }
+
 </script>
 
+<style scoped>
+.main-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  z-index: 1;
+  background-image: url("~@/assets/background.jpg");
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+</style>
+
 <style>
-.query-box h2 {
-  font-size: 50px; /* Adjust this to your desired font size */
-  margin-bottom: 15px;
-  color: #333;
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
-.textarea-wrapper {
-  position: relative; /* This makes it a reference for absolutely positioned child elements */
+html, body, #app, .main-container {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  font-family: 'IBM Plex Serif', serif;
 }
 
-.loading-indicator {
-  position: absolute; /* This allows us to place the dots on top of the textarea */
-  top: 50%; /* Centers vertically */
-  left: 10px; /* A small left margin to avoid the dots being too close to the border */
-  transform: translateY(-50%); /* Ensures vertical centering */
-}
-
-.loading-indicator::after {
-  content: "...";
-  display: inline-block;
-  animation: loadingDots 1s steps(4, end) infinite;
-  font-size: 30px;
-}
-
-.query-box {
+  .query-box {
+  height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
-}
-
-.input-container, .response-container {
+  justify-content: center;
   position: relative;
-  width: 800px;
-  display: flex;
-  align-items: center;
-}
+  }
+  .query-box h2 {
+    padding-top: 200px;
+    font-size: 80px;
+    margin-bottom: -20px;
+    color: #ffffff;
+  }
 
-.query-box input {
-  font-size: 20px;        
-  padding: 10px 40px 10px 15px;
-  width: 100%;  
-  box-sizing: border-box;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
+  .query-box h3 {
+    font-size: 18px;
+    color: #ffffff;
+  }
 
-.send-button {
+  .textarea-wrapper {
+    position: relative;
+  }
+
+  .loading-indicator {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+  }
+
+  .loading-indicator::after {
+    content: "...";
+    display: inline-block;
+    animation: loadingDots 1s steps(4, end) infinite;
+    font-size: 30px;
+  }
+
+  .input-container, .response-container, .icon-container, .response-input {
+    position: relative;
+    max-width: 800px;
+    width: 100%;
+  }
+
+  .query-box input {
+    position: relative;
+    font-size: 20px;        
+    padding: 10px 40px 10px 15px;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  .send-button {
     position: absolute;
     right: 8px;
     top: 50%;
@@ -173,66 +285,198 @@ export default {
     border: none;
     background: transparent;
     cursor: pointer;
-    width: 24px;     /* Adjust these dimensions based on your image's size */
-    height: 24px;    /* Adjust these dimensions based on your image's size */
-    padding: 0;      /* Remove padding if there's any */
-    overflow: hidden; /* Hide any parts of the image that might overflow */
-}
+    width: 24px;
+    height: 24px;
+    padding: 0;
+  }
 
-.send-button img {
-    width: 100%;     /* Make the image take the full width of the button */
-    height: auto;    /* Maintain the image's aspect ratio */
-    display: block;  /* Remove any line-height related gaps below the image */
-}
+  .send-button img {
+      width: 100%;
+      height: auto;
+      display: block;
+  }
 
-.response-input {
-  resize: none;  
-  overflow: auto;
-  width: 800px; 
-  height: 200px;  
-  margin-top: 10px;
-  font-size: 20px;        
-  padding: 10px 40px 10px 15px;
-  box-sizing: border-box;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
+  .response-input {
+    resize: none;  
+    overflow: auto;
+    width: 100%;
+    height: 200px;  
+    margin-top: 10px;
+    font-size: 20px;        
+    padding: 10px 40px 10px 15px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
 
-.hamburger-menu {
+  @keyframes loadingDots {
+    0% { content: "."; }
+    33% { content: ".."; }
+    66% { content: "..."; }
+    100% { content: "."; }
+  }
+
+  .icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+
+  .icon-container a {
+    margin: 0 20px;
+    color: #ffffff;
+    padding-top: 5px;
+    padding-bottom: 290px;
+  }
+
+  .icon-container i {
+    transition: color 0.3s ease;
+  }
+
+  .icon-container a:hover i {
+    color: #007bff;
+  }
+
+  .scroll-arrow {
     position: absolute;
-    top: 20px;
-    left: 20px;
+    bottom: 50px;
+    left: 50%;
+    z-index: 2;
+    transform: translate(-50%, 50%);
+    background-color: transparent;
+    border: none;
     cursor: pointer;
-    font-size: 34px;
-    z-index: 1000;
+    }
+
+  .scroll-arrow img {
+    filter: invert(1);
+    width: 40px;
+    height: 40px;
+  }
+
+  .full-page {
+  min-height: 100vh;
+  width: 100%;
+  background-color: #0f0f0f;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.menu-items {
-    position: absolute;
-    top: 60px;
-    left: 20px;
-    background: #fff;
-    box-shadow: 0px 0px 8px rgba(0,0,0,0.2);
-    border-radius: 4px;
-    overflow: hidden;
-    z-index: 999;
+@media only screen and (max-width: 768px) {
+  .input-container, .response-container, .response-input, .query-box {
+    max-width: 100%;
+  }
 }
 
-.menu-items a {
-    display: block;
-    padding: 10px 20px;
-    text-decoration: none;
-    color: black;
+.about-section h2 {
+  text-align: center;
+  align-items: center;
+  padding: 20px;
+  color: #ffffff;
+  font-size: 36px;
 }
 
-.menu-items a:hover {
-    background: #eee;
+.about-content {
+  margin-bottom: 80px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  color: #b9b9b9;;
 }
 
-@keyframes loadingDots {
-  0% { content: "."; }
-  33% { content: ".."; }
-  66% { content: "..."; }
-  100% { content: "."; }
+.about-photo img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 20px;
 }
+
+.about-text {
+  margin-left: 20px;
+  color: #b9b9b9;
+}
+
+.skills-contact-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Common styling for both Skills and Contact sections */
+.skills-section, .contact-section {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.skills-section h2, .contact-section h2 {
+  margin-top: 0;
+  padding: 0;
+  line-height: 1;
+  font-size: 22px;
+  text-align: center;
+  color: white;
+}
+
+.skills-content {
+  align-items: left;
+}
+
+.skill {
+  display: flex;
+  align-items: center;
+  width: 400px;
+  justify-content: flex-start;
+}
+
+/*List of skills*/
+.skill span {
+  padding: 12px;
+  margin: 0;
+  display: inline-block;
+  width: 140px;
+  font-size: 12px; 
+  line-height: 1.5;
+  text-align: right;
+  color: #b9b9b9;
+}
+
+.skill-bar {
+  position: relative;
+  height: 8px;
+  width: 100%;
+  background: #313131;
+}
+
+.skill-percentage {
+  position: absolute;
+  top: -30px;
+  font-size: 14px;
+  color: #ffffff;
+  white-space: nowrap;
+  transform: translateX(-80%);
+}
+
+.skill-level {
+  height: 100%;
+  width: 100px;
+  background: #b9b9b9;
+}
+
+.contact-content {
+  color: #b9b9b9;
+  margin-top: 0;
+  margin-bottom: 35px;
+  padding: 0;
+  line-height: 1;
+}
+
 </style>
